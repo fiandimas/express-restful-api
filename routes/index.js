@@ -50,4 +50,16 @@ router.post('/add',function(req,res,next){
 		});
 	});
 });
+
+router.delete('/delete/:id',function(req,res,next){
+	MongoClient.connect(url,function(err,db){
+		if(err) throw err;
+		var dbo = db.db('restful-api');
+		dbo.collection('data').deleteOne({_id : ObjectId(req.params.id)},function(err,result){
+			if(err) throw err;
+			res.send(result);
+			db.close();
+		});
+	});
+});
 module.exports = router;
