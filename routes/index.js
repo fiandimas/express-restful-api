@@ -28,4 +28,26 @@ router.get('/find/:id',function(req,res,next){
 		});
 	});
 });
+
+router.post('/add',function(req,res,next){
+	MongoClient.connect(url,function(err,db){
+		if(err) throw err;
+		var name = req.body.name;
+		var clas = req.body.class;
+		var age = req.body.age;
+		var email = req.body.email;
+		var query = {
+			name: name,
+			class: clas,
+			age: age,
+			email: email
+		};
+		var dbo = db.db('restful-api');
+		dbo.collection('data').insertOne(query,function(err,result){
+			if(err) throw err;
+			res.send(result);
+			db.close();
+		});
+	});
+});
 module.exports = router;
