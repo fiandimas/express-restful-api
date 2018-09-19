@@ -75,4 +75,24 @@ router.delete('/delete',function(req,res,next){
 	});
 });
 
+router.put('/update/:id',function(req,res,next){
+	MongoClient.connect(url,function(err,db){
+		if(err) throw err;
+		var dbo = db.db('restful-api');
+		var query = { 
+				$set: {
+					name: req.body.name,
+					class: req.body.class,
+					age: req.body.age,
+					email: req.body.email
+			}
+		}
+		dbo.collection('data').updateOne({_id : ObjectId(req.params.id)},query,function(err,result){
+			if(err) throw err;
+			res.send(result);
+			db.close();
+		});
+	});
+});
+
 module.exports = router;
