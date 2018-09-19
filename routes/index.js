@@ -62,4 +62,17 @@ router.delete('/delete/:id',function(req,res,next){
 		});
 	});
 });
+
+router.delete('/delete',function(req,res,next){
+	MongoClient.connect(url,function(err,db){
+		if(err) throw err;
+		var dbo = db.db('restful-api');
+		dbo.collection('data').deleteMany({},function(err,result){
+			if(err) throw err;
+			res.send(result);
+			db.close();
+		});
+	});
+});
+
 module.exports = router;
