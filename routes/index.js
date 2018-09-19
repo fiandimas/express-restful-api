@@ -17,4 +17,15 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+router.get('/find/:id',function(req,res,next){
+	MongoClient.connect(url,function(err,db){
+		if(err) throw err;
+		var dbo = db.db('restful-api');
+		dbo.collection('data').findOne({_id : ObjectId(req.params.id)},function(err,result){
+			if(err) throw err;
+			res.send(result);
+			db.close();
+		});
+	});
+});
 module.exports = router;
