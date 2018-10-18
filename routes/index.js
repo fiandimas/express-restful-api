@@ -5,7 +5,7 @@ var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/';
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/users', function(req, res, next) {
 	MongoClient.connect(url,function(err,db){
 		if(err) throw err;
 		var dbo = db.db('restful-api');
