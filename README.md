@@ -25,4 +25,4 @@ Put Route
 1. localhost:3000/api/user -> update data by id
 
 Delete Route
-1. localhost:3000/api/user -> delete all data
+1. localhost:3000/api/user -> delete by id
