@@ -15,15 +15,14 @@ How to use it
 The Route
 
 Get Route
-1. localhost:3000 -> show all data
-2. localhost:3000/find/id -> show data by id
+1. localhost:3000/api/users -> show all data
 
 Post Route
-1. localhost:3000/add -> add data
+1. localhost:3000/api/user -> show data  
+2. localhost:3000/api/user -> add data
 
 Put Route
-1. localhost:3000/update/id -> update data by id
+1. localhost:3000/api/user -> update data by id
 
 Delete Route
-1. localhost:3000/delete -> delete all data
-2. localhost:3000/delete/id -> delete data by id
+1. localhost:3000/api/user -> delete all data

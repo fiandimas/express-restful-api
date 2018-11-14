@@ -45,7 +45,7 @@ MongoClient.connect(url,function(err,db){
 			name: 'Yona', class: 'XII RPL 1', age: 17, email: 'yona@student.maju-mlg.com' 
 		},
 	];
-	dbo.collection("data").insertMany(myObj,function(err,result){
+	dbo.collection("users").insertMany(myObj,function(err,result){
 		if(err) throw err;
 		console.log('Collection created!');
 		console.log(result);

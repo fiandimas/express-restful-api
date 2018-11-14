@@ -37,24 +37,17 @@ router.delete('/user',function(req,res){
   });
 });
 
-router.put('/update',function(req,res,next){
-	MongoClient.connect(url,function(err,db){
-		if(err) throw err;
-		var dbo = db.db('restful-api');
-		var query = { 
-				$set: {
-					name: req.body.name,
-					class: req.body.class,
-					age: req.body.age,
-					email: req.body.email
-			}
-		}
-		dbo.collection('data').updateOne({_id : ObjectId(req.params.id)},query,function(err,result){
-			if(err) throw err;
-			res.send(result);
-			db.close();
-		});
-	});
+router.put('/user',function(req,res){
+  User.findOneAndUpdate({_id: ObjectId(req.body.id)},{
+    $set: {
+      name: req.body.name,
+      class: req.body.class,
+      age: req.body.age,
+      email: req.body.email
+    }
+  },{new: true},function(err,result){
+    res.json({status: 'Success', message: '1 User Updated', data: result});
+  })
 });
 
 module.exports = router;
